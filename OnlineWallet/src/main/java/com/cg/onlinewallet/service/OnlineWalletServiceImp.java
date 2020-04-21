@@ -2,20 +2,25 @@ package com.cg.onlinewallet.service;
 
 import java.util.regex.Pattern;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cg.onlinewallet.dao.*;
 import com.cg.onlinewallet.entities.*;
 import com.cg.onlinewallet.exceptions.*;
 
 
-public class OnlineWalletUserImp implements OnlineWalletService {
+@Transactional
+@Service
+public class OnlineWalletServiceImp implements OnlineWalletService {
 
-	public OnlineWalletUserImp() {
+	public OnlineWalletServiceImp() {
 		// TODO Auto-generated constructor stub
 	}
     @Autowired
-    OnlineWalletDao dao;
+    private OnlineWalletDao dao;
     
 	@Override
 	public Integer resgisterUser(WalletUser user) {
@@ -31,9 +36,9 @@ public class OnlineWalletUserImp implements OnlineWalletService {
 	boolean checkUserName(String userName){
 		if(userName==null) 
 			throw new NullException("Entered value cannot be NULL");
-		boolean userNamePattern=Pattern.matches("[a-zA-Z]",userName);
+		/*boolean userNamePattern=Pattern.matches("[a-zA-Z]",userName);
 		 if(userNamePattern==false)
-			throw new InvalidException("Entered username should contain alphabets only");
+			throw new InvalidException("Entered username should contain alphabets only");*/
 		else return true;
 	}
 	boolean checkPhoneNumber(String phoneNumber) {

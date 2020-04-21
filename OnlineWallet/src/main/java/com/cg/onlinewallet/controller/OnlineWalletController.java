@@ -15,15 +15,16 @@ import com.cg.onlinewallet.service.*;
 public class OnlineWalletController {
     
 	@Autowired
-	OnlineWalletService service;
+	private OnlineWalletService service;
+	
 	public OnlineWalletController() {
 		// TODO Auto-generated constructor stub
 	}
-	/*@RequestMapping("/check")
+	@RequestMapping("/check")
 	public ResponseEntity<String> show()
 	{
 		return new ResponseEntity<String>("hello",HttpStatus.OK);
-	}*/
+	}
 	
 	@PostMapping("/register")
 	public ResponseEntity<String> saveUser(@RequestBody WalletUser user)

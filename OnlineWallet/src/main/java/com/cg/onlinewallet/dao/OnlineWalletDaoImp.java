@@ -15,22 +15,33 @@ import com.cg.onlinewallet.entities.*;
 @Repository
 public class OnlineWalletDaoImp implements OnlineWalletDao {
     @PersistenceContext
-	EntityManager entityManager;
+	private EntityManager entityManager;
 	public OnlineWalletDaoImp() {
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public void persistUser(WalletUser user) {
+	public Integer persistUser(WalletUser user) {
 		// TODO Auto-generated method stub
 		entityManager.persist(user);
+		return user.getUserID();
 	}
 	
+	@Override
+	public void persistAccount(WalletAccount account)
+	{
+		entityManager.persist(account);
+	}
+	@Override
+	public void flush()
+	{
+		entityManager.flush();
+	}
     @Override
-   	public int getLoginNameCount(String loginName)
+   	public List<WalletUser> getLoginNameCount(String loginName)
    	{   
-   		String Qstr="SELECT COUNT(user) FROM WalletUser user WHERE user.loginName=loginName";
+   		String Qstr="SELECT user FROM WalletUser user WHERE user.loginName=loginName";
    		TypedQuery<WalletUser> query=entityManager.createQuery(Qstr,WalletUser.class);
-   		return query.getFirstResult();
+   		return query.getResultList();
    	}
 	/*@Override
 	public List<WalletAccount> getAccountList()

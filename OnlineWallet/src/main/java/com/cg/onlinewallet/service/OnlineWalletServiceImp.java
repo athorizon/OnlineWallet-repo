@@ -25,49 +25,27 @@ public class OnlineWalletServiceImp implements OnlineWalletService {
 	@Override
 	public Integer resgisterUser(WalletUser user) {
 		// TODO Auto-generated method stub
-		checkUserName(user.getUserName());
-		checkPhoneNumber(user.getPhoneNumber());
-		checkPassword(user.getPassword());
-		checkLoginName(user.getLoginName());
-		
-		dao.persistUser(user);
-		return null;
+		/*checkLoginName(user.getLoginName());*/
+		WalletAccount account=new WalletAccount(0.00,null);
+	    dao.persistAccount(account);
+	    user.setAccountDetail(account);
+		Integer userId=dao.persistUser(user);
+		return userId;
 	}
-	boolean checkUserName(String userName){
-		if(userName==null) 
-			throw new NullException("Entered value cannot be NULL");
-		/*boolean userNamePattern=Pattern.matches("[a-zA-Z]",userName);
-		 if(userNamePattern==false)
-			throw new InvalidException("Entered username should contain alphabets only");*/
-		else return true;
-	}
-	boolean checkPhoneNumber(String phoneNumber) {
-		if(phoneNumber==null)
-			throw new NullException("Entered value cannot be NULL");
-		if(phoneNumber.length()!=10)
-			throw new ValidationException("The phone Number should be of 10 digits");
-		boolean phoneNumberPattern=Pattern.matches("[0-9]{10}",phoneNumber);
-		 if(phoneNumberPattern==false) 
-			throw new InvalidException("The phone number should only contain digits");
-		else return true;
-	}
-	boolean checkPassword(String password) {
-		if(password.length()<6)
-			throw new ValidationException("The Password entered must be greater or equal to 6 characters");
-		else if(password==null)
-			throw new NullException("Entered value cannot be NULL");
-		boolean passwordPattern=Pattern.matches("[a-zA-z0-9$&+,:;=?@#|'<>.-^*()%!]{6,12}",password);
-		if(passwordPattern==false)
-			throw new InvalidException("Entered password should be alphanumeric and must contain special characters");
-		else return true;
+	
+	@Override
+	public void addMoney(Integer userId, Double Amount)
+	{
+	   WalletUser user=dao.getUser(userId);
+	   Integer accountId=user.getAccountDetail().getAccountID();
+	   WalletAccount account=dao.getAccount(accountId);
+	   Double balance=account.getAccountBalance();
+	   balance+=Amount;
+	   account.setAccountBalance(balance);
+	   dao.flush();
 	}
 	boolean checkLoginName(String loginName) {
-		if(loginName==null) 
-			throw new NullException("Entered value cannot be NULL");
-		boolean userNamePattern=Pattern.matches("[a-z0-9A-Z]{5,9}",loginName);
-		 if(userNamePattern==false)
-			throw new InvalidException("Entered Login Name should contain alphabets only");
-		 if(dao.getLoginNameCount(loginName)!=0)
+		 if(dao.getLoginNameCount(loginName)!=null)
 			 throw new WrongValueException("Entered Login Name is already present, please enter another login Name");
 		else return true;
 	}

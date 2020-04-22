@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,11 @@ public class OnlineWalletController {
 	public OnlineWalletController() {
 		// TODO Auto-generated constructor stub
 	}
+	@RequestMapping("/")
+	public String check()
+	{
+		return "WORKING";
+	}
 	@RequestMapping("/check")
 	public ResponseEntity<String> show()
 	{
@@ -27,11 +33,17 @@ public class OnlineWalletController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<String> saveUser(@RequestBody WalletUser user)
+	public ResponseEntity<Integer> regsiterUser(@RequestBody WalletUser user)
 	{   
-		service.resgisterUser(user);
-		return new ResponseEntity<String>("User succesfully resgistered",HttpStatus.OK);
+		Integer userId=service.resgisterUser(user);
+		return new ResponseEntity<Integer>(userId,HttpStatus.OK);
 		
+	}
+	@PutMapping("/addmoney")
+	public ResponseEntity<String> addMoney(@RequestBody Integer userId, @RequestBody Double amount)
+	{
+		service.addMoney(userId, amount);
+		return new ResponseEntity<String>("the money is added in the account succesfully",HttpStatus.OK);
 	}
 
 }

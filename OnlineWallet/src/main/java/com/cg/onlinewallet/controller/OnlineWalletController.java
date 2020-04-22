@@ -26,11 +26,6 @@ public class OnlineWalletController {
 	{
 		return "WORKING";
 	}
-	@RequestMapping("/check")
-	public ResponseEntity<String> show()
-	{
-		return new ResponseEntity<String>("hello",HttpStatus.OK);
-	}
 	
 	@PostMapping("/register")
 	public ResponseEntity<Integer> regsiterUser(@RequestBody WalletUser user)

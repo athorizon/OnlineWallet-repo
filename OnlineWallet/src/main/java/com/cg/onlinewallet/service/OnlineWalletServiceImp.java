@@ -44,6 +44,13 @@ public class OnlineWalletServiceImp implements OnlineWalletService {
 	   account.setAccountBalance(balance);
 	   dao.flush();
 	}
+	
+	@Override
+	public Double showBalance(Integer userId)
+	{
+		WalletUser user=dao.getUser(userId);
+		return null;
+	}
 	boolean checkLoginName(String loginName) {
 		 if(dao.getLoginNameCount(loginName)!=null)
 			 throw new WrongValueException("Entered Login Name is already present, please enter another login Name");

@@ -3,6 +3,8 @@ package com.cg.onlinewallet.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,11 +36,17 @@ public class OnlineWalletController {
 		return new ResponseEntity<Integer>(userId,HttpStatus.OK);
 		
 	}
-	@PutMapping("/addmoney")
-	public ResponseEntity<String> addMoney(@RequestBody Integer userId, @RequestBody Double amount)
+	@PutMapping("/addmoney/{userId}")
+	public ResponseEntity<String> addMoney(@PathVariable("userId") Integer userId, @RequestBody Double amount)
 	{
 		service.addMoney(userId, amount);
 		return new ResponseEntity<String>("the money is added in the account succesfully",HttpStatus.OK);
+	}
+	@GetMapping("/showbalance/{userId}")
+	public ResponseEntity<Double> showBalance(@PathVariable("userId") Integer userId)
+	{
+		Double balance=service.showBalance(userId);
+		return new ResponseEntity<Double>(balance,HttpStatus.OK);
 	}
 
 }

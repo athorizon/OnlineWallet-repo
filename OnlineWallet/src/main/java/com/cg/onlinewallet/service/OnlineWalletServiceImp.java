@@ -49,7 +49,8 @@ public class OnlineWalletServiceImp implements OnlineWalletService {
 	public Double showBalance(Integer userId)
 	{
 		WalletUser user=dao.getUser(userId);
-		return null;
+		WalletAccount account=user.getAccountDetail();
+		return account.getAccountBalance();	
 	}
 	boolean checkLoginName(String loginName) {
 		 if(dao.getLoginNameCount(loginName)!=null)

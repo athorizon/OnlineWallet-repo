@@ -11,48 +11,54 @@ import org.springframework.stereotype.Repository;
 
 
 import com.cg.onlinewallet.entities.*;
-@Transactional
+
 @Repository
 public class OnlineWalletDaoImp implements OnlineWalletDao {
     @PersistenceContext
-	EntityManager entityManager;
+	private EntityManager entityManager;
 	public OnlineWalletDaoImp() {
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public void persistUser(WalletUser user) {
+	public Integer persistUser(WalletUser user) {
 		// TODO Auto-generated method stub
 		entityManager.persist(user);
+		return user.getUserID();
 	}
 	
-    @Override
-   	public int getLoginNameCount(String loginName)
-   	{   
-   		String Qstr="SELECT COUNT(user) FROM WalletUser user WHERE user.loginName=loginName";
-   		TypedQuery<WalletUser> query=entityManager.createQuery(Qstr,WalletUser.class);
-   		return query.getFirstResult();
-   	}
-	/*@Override
-	public List<WalletAccount> getAccountList()
+	@Override
+	public void persistAccount(WalletAccount account)
 	{
-		String Qstr="SELECT account FROM WalletAccount account";
-		TypedQuery<WalletAccount> query=entityManager.createQuery(Qstr,WalletAccount.class);
-		return query.getResultList();
+		entityManager.persist(account);
 	}
 	@Override
-	public List<WalletTransactions> getTransactionList()
+	public void flush()
 	{
-		String Qstr="SELECT transaction FROM WalletTransactions transaction";
-		TypedQuery<WalletTransactions> query=entityManager.createQuery(Qstr,WalletTransactions.class);
-		return query.getResultList();
-	}*/
+		entityManager.flush();
+	}
+    @Override
+   	public boolean getLoginNameCount(String loginName)
+   	{   
+   		String Qstr="SELECT user.loginName FROM WalletUser user WHERE user.loginName= :loginName";
+   		TypedQuery<String> query=entityManager.createQuery(Qstr,String.class).setParameter("loginName",loginName);
+   		try
+   		{
+   			query.getSingleResult();
+   		}
+   		catch(Exception ex)
+   		{
+   			return true;
+   		}
+   		return false;
+   	}
+	
 	@Override
 	public WalletUser getUser(Integer userId)
 	{   
-		
 		WalletUser user=entityManager.find(WalletUser.class, userId);
         return user;
 	}
+	
 	@Override
 	public WalletAccount getAccount(Integer accountId)
 	{

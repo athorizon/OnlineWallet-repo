@@ -20,7 +20,9 @@ public class WalletUser implements Serializable {
 	public Integer getUserID() {
 		return userID;
 	}
-	
+	public void setUserID(Integer userID) {
+		this.userID = userID;
+	}
 	public String getUserName() {
 		return userName;
 	}

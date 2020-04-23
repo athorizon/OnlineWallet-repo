@@ -17,7 +17,9 @@ public class WalletTransactions implements Serializable {
 	public Integer getTransactionID() {
 		return transactionID;
 	}
-	
+	public void setTransactionID(Integer transactionID) {
+		this.transactionID = transactionID;
+	}
 	public String getDescription() {
 		return description;
 	}

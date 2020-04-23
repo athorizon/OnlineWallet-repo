@@ -17,6 +17,9 @@ public class WalletAccount implements Serializable {
 	public Integer getAccountID() {
 		return accountID;
 	}
+	public void setAccountID(Integer accountID) {
+		this.accountID = accountID;
+	}
 	public Double getAccountBalance() {
 		return accountBalance;
 	}

@@ -7,10 +7,12 @@ import com.cg.onlinewallet.entities.WalletTransactions;
 import com.cg.onlinewallet.entities.WalletUser;
 
 public interface OnlineWalletDao {
-	void persistUser(WalletUser user);
+	Integer persistUser(WalletUser user);
 	WalletUser getUser(Integer userId);
 	WalletAccount getAccount(Integer accountId);
 	WalletTransactions getTransaction(Integer transactionId);
-	int getLoginNameCount(String loginName);
+	boolean getLoginNameCount(String loginName);
+	void persistAccount(WalletAccount account);
+	void flush();
 	
 }

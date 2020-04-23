@@ -55,7 +55,7 @@ public class OnlineWalletServiceImp implements OnlineWalletService {
 	boolean checkLoginName(String loginName) {
 		 if(dao.getLoginNameCount(loginName)!=true)
 			 throw new WrongValueException("Entered Login Name is already present, please enter another login Name");
-		else return true;
+		else 
+			return true;
 	}
-
 }

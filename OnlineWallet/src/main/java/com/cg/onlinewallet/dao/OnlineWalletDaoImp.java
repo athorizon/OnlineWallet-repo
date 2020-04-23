@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.cg.onlinewallet.entities.*;
-@Transactional
+
 @Repository
 public class OnlineWalletDaoImp implements OnlineWalletDao {
     @PersistenceContext

@@ -25,7 +25,7 @@ public class OnlineWalletServiceImp implements OnlineWalletService {
 	@Override
 	public Integer resgisterUser(WalletUser user) {
 		// TODO Auto-generated method stub
-		/*checkLoginName(user.getLoginName());*/
+		checkLoginName(user.getLoginName());
 		WalletAccount account=new WalletAccount(0.00,null);
 	    dao.persistAccount(account);
 	    user.setAccountDetail(account);
@@ -53,7 +53,7 @@ public class OnlineWalletServiceImp implements OnlineWalletService {
 		return account.getAccountBalance();	
 	}
 	boolean checkLoginName(String loginName) {
-		 if(dao.getLoginNameCount(loginName)!=null)
+		 if(dao.getLoginNameCount(loginName)!=true)
 			 throw new WrongValueException("Entered Login Name is already present, please enter another login Name");
 		else return true;
 	}

@@ -37,33 +37,28 @@ public class OnlineWalletDaoImp implements OnlineWalletDao {
 		entityManager.flush();
 	}
     @Override
-   	public List<WalletUser> getLoginNameCount(String loginName)
+   	public boolean getLoginNameCount(String loginName)
    	{   
-   		String Qstr="SELECT user FROM WalletUser user WHERE user.loginName=loginName";
-   		TypedQuery<WalletUser> query=entityManager.createQuery(Qstr,WalletUser.class);
-   		return query.getResultList();
+   		String Qstr="SELECT user.loginName FROM WalletUser user WHERE user.loginName= :loginName";
+   		TypedQuery<String> query=entityManager.createQuery(Qstr,String.class).setParameter("loginName",loginName);
+   		try
+   		{
+   			query.getSingleResult();
+   		}
+   		catch(Exception ex)
+   		{
+   			return true;
+   		}
+   		return false;
    	}
-	/*@Override
-	public List<WalletAccount> getAccountList()
-	{
-		String Qstr="SELECT account FROM WalletAccount account";
-		TypedQuery<WalletAccount> query=entityManager.createQuery(Qstr,WalletAccount.class);
-		return query.getResultList();
-	}
-	@Override
-	public List<WalletTransactions> getTransactionList()
-	{
-		String Qstr="SELECT transaction FROM WalletTransactions transaction";
-		TypedQuery<WalletTransactions> query=entityManager.createQuery(Qstr,WalletTransactions.class);
-		return query.getResultList();
-	}*/
+	
 	@Override
 	public WalletUser getUser(Integer userId)
 	{   
-		
 		WalletUser user=entityManager.find(WalletUser.class, userId);
         return user;
 	}
+	
 	@Override
 	public WalletAccount getAccount(Integer accountId)
 	{

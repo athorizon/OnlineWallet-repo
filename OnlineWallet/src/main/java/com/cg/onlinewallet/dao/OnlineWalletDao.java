@@ -11,7 +11,7 @@ public interface OnlineWalletDao {
 	WalletUser getUser(Integer userId);
 	WalletAccount getAccount(Integer accountId);
 	WalletTransactions getTransaction(Integer transactionId);
-	List<WalletUser> getLoginNameCount(String loginName);
+	boolean getLoginNameCount(String loginName);
 	void persistAccount(WalletAccount account);
 	void flush();
 	

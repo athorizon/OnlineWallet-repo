@@ -6,5 +6,6 @@ public interface OnlineWalletService {
 	Integer resgisterUser(WalletUser user);
     void addMoney(Integer userId, Double Amount);
 	Double showBalance(Integer userId);
+	void transactMoney(Integer userId, String beneficiaryLoginName, Double amount);
 
 }

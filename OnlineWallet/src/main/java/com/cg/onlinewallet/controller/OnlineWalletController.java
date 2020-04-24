@@ -48,5 +48,12 @@ public class OnlineWalletController {
 		Double balance=service.showBalance(userId);
 		return new ResponseEntity<Double>(balance,HttpStatus.OK);
 	}
+	
+	@PutMapping("/transactmoney/{userId}")
+	public ResponseEntity<String> transactMoney(@PathVariable("userId") Integer userId,@RequestBody Double amount,@RequestBody String loginName)
+	{
+		service.transactMoney(userId, loginName,amount);
+		return new ResponseEntity<String>("Transaction Completed",HttpStatus.OK);
+	}
 
 }

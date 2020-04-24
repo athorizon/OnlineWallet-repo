@@ -30,6 +30,12 @@ public class WalletAccount implements Serializable {
 		this.transactionList = transactionList;
 	}
 	
+	public List<WalletTransactions> getTransactionList() {
+		return transactionList;
+	}
+	public void setTransactionList(List<WalletTransactions> transactionList) {
+		this.transactionList = transactionList;
+	}
 	public WalletAccount() {
 		// TODO Auto-generated constructor stub
 	}

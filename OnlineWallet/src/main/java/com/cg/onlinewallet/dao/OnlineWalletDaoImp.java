@@ -32,13 +32,18 @@ public class OnlineWalletDaoImp implements OnlineWalletDao {
 		entityManager.persist(account);
 	}
 	@Override
+	public void persistTransaction(WalletTransactions transaction)
+	{
+		entityManager.persist(transaction);
+	}
+	@Override
 	public void flush()
 	{
 		entityManager.flush();
 	}
     @Override
-   	public boolean getLoginNameCount(String loginName)
-   	{   
+   	public boolean checkUserByLoginName(String loginName)
+   	{   //return false if the user is not present;
    		String Qstr="SELECT user.loginName FROM WalletUser user WHERE user.loginName= :loginName";
    		TypedQuery<String> query=entityManager.createQuery(Qstr,String.class).setParameter("loginName",loginName);
    		try
@@ -47,11 +52,17 @@ public class OnlineWalletDaoImp implements OnlineWalletDao {
    		}
    		catch(Exception ex)
    		{
-   			return true;
+   			return false;
    		}
-   		return false;
+   		return true;
    	}
-	
+	@Override 
+	public WalletUser getUserByLoginName(String loginName)
+	{
+		String Qstr="SELECT user FROM WalletUser user WHERE user.loginName= :loginName";
+   		TypedQuery<WalletUser> query=entityManager.createQuery(Qstr,WalletUser.class).setParameter("loginName",loginName);
+   		return query.getSingleResult();
+	}
 	@Override
 	public WalletUser getUser(Integer userId)
 	{   

@@ -1,3 +1,8 @@
+/************************************************************************************************************************************************************************************************************************
+ * @author Arushi Bhardwaj
+ * Description: It is a spring repository class which provides the mechanism for storage,retrieval,search and update operations the objects managed by the entitymanager.
+ * Created Date:
+ *************************************************************************************************************************************************************************************************************************/
 package com.cg.onlinewallet.dao;
 
 import java.util.List;
@@ -36,6 +41,13 @@ public class OnlineWalletDaoImp implements OnlineWalletDao {
 	{
 		entityManager.flush();
 	}
+/*************************************************************************************************************************************************************************
+* Method:getLoginNameCount
+* Description:It is used for getting the loginname from user and checking it in the database that if it is present or not i.e. the user is a registered user or not.
+* returns Boolean: true if the loginname is present otherwise it will return false.
+* Created By:Arushi Bhardwaj
+* Created on:
+	* *********************************************************************************************************************************************************************/
     @Override
    	public boolean getLoginNameCount(String loginName)
    	{   

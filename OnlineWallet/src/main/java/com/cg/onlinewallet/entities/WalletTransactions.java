@@ -1,3 +1,9 @@
+/**************************************************************************************************************************************************************
+ * @author Kunal Maheshwari
+ * Description: It is an entity class for Wallet Transaction(using @Entity) that provides all the variables we are going to use in our project for transferring fund to another account.
+ *              It also gives the information about the primary key(TransactionID) using @id annotation and the relation with other tables in our database.
+ * Created Date:
+ ***************************************************************************************************************************************************************/
 package com.cg.onlinewallet.entities;
 
 import java.io.Serializable;
@@ -14,6 +20,14 @@ public class WalletTransactions implements Serializable {
 	private LocalDateTime dateOfTransaction;
 	private Double amount;
 	private Double accountBalance;
+	
+/**********************************************************************************************************************************************
+* Method:getters(for eg:getTransactionID()) and setters(for eg:setTransactionID(int accountID))
+* Description:getters for retrieving and setters for updating the values of the variables.
+* Created By:Kunal Maheshwari
+* Created on:
+***********************************************************************************************************************************************/
+	
 	public Integer getTransactionID() {
 		return transactionID;
 	}

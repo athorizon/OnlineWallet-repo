@@ -1,3 +1,9 @@
+/**************************************************************************************************************************************************************
+ * @author Arushi Bhardwaj
+ * Description: It is an entity class for Wallet User(using @Entity) that provides all the variables we are going to use in our project for registering a new user.
+ *              It also gives the information about the primary key(UserID) using @id annotation and the relation with other tables in our database.
+ * Created Date:
+ ***************************************************************************************************************************************************************/
 package com.cg.onlinewallet.entities;
 
 import java.io.Serializable;
@@ -17,6 +23,15 @@ public class WalletUser implements Serializable {
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	WalletAccount accountDetail;
+	
+	
+/**********************************************************************************************************************************************
+* Method:getters(for eg:getUserID()) and setters(for eg:setUserID(int accountID))
+* Description:getters for retrieving and setters for updating the values of the variables.
+* Created By:Arushi Bhardwaj
+* Created on:
+***********************************************************************************************************************************************/
+	
 	public Integer getUserID() {
 		return userID;
 	}

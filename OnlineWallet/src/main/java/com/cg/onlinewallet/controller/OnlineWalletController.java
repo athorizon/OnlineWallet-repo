@@ -1,3 +1,8 @@
+/************************************************************************************************************************************************************************************************************************
+ * @author Kunal Maheshwari
+ * Description: It is a controller class used to create RESTful web services. It takes care of mapping the request data to the defined request handler method.
+ * Created Date:
+ *************************************************************************************************************************************************************************************************************************/
 package com.cg.onlinewallet.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;

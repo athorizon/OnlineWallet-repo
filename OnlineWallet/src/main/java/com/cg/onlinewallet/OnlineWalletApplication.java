@@ -1,3 +1,8 @@
+/************************************************************************************************************************************************************************************************************************
+ * @author Arushi Bhardwaj
+ * Description: It is a spring boot application for making a stand-alone application using entitymanager which will manage all the operations performed on the entities.
+ * Created Date:
+ *************************************************************************************************************************************************************************************************************************/
 package com.cg.onlinewallet;
 
 import java.time.LocalDateTime;
@@ -21,6 +26,13 @@ public class OnlineWalletApplication implements CommandLineRunner{
 	public static void main(String[] args) {
 		SpringApplication.run(OnlineWalletApplication.class, args);
 	}
+	
+/**********************************************************************************************************************************************
+* Method:run method of commandlinerunner interface
+* Description:It is used for persisting and storing the data into our database.
+* Created By:Kunal Maheshwari,Arushi Bhardwaj
+* Created on:
+* ***********************************************************************************************************************************************/
 
 	@Override
 	public void run(String... args) throws Exception {

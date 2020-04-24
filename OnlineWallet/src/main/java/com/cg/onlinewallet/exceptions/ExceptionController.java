@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 @RestControllerAdvice
 public class ExceptionController {
 
-	@ExceptionHandler(value=NullException.class)
-	public ResponseEntity<Object> handleNullException(NullException exception)
+	@ExceptionHandler(value=UnauthorizedAccessException.class)
+	public ResponseEntity<Object> handleNullException(UnauthorizedAccessException exception)
 	{
 		return new ResponseEntity<>(exception.getMessage(),HttpStatus.NOT_FOUND);
 	}

@@ -1,5 +1,7 @@
 package com.cg.onlinewallet.dao;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Repository;
 
 
 import com.cg.onlinewallet.entities.*;
+import com.cg.onlinewallet.entities.WalletAccount.status;
+import com.cg.onlinewallet.exceptions.UnauthorizedAccessException;
 
 @Repository
 public class OnlineWalletDaoImp implements OnlineWalletDao {
@@ -20,10 +24,9 @@ public class OnlineWalletDaoImp implements OnlineWalletDao {
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public Integer persistUser(WalletUser user) {
+	public void persistUser(WalletUser user) {
 		// TODO Auto-generated method stub
 		entityManager.persist(user);
-		return user.getUserID();
 	}
 	
 	@Override
@@ -63,6 +66,39 @@ public class OnlineWalletDaoImp implements OnlineWalletDao {
    		TypedQuery<WalletUser> query=entityManager.createQuery(Qstr,WalletUser.class).setParameter("loginName",loginName);
    		return query.getSingleResult();
 	}
+	
+	@Override
+	public List<String> getActiveUserList()
+	{
+		String Qstr="SELECT user.loginName FROM WalletUser user JOIN user.accountDetail account WHERE account.userStatus= :userStatus";
+		TypedQuery<String> query=entityManager.createQuery(Qstr,String.class).setParameter("userStatus", status.active);
+		List<String> userList;
+		try {
+		userList= query.getResultList();
+		}
+		catch(Exception exception)
+		{
+			throw new UnauthorizedAccessException("No user Exist for given criteria");
+		}
+		return userList;
+	}
+	
+	@Override
+	public List<String> getNonActiveUserList()
+	{
+		String Qstr="SELECT user.loginName FROM WalletUser user JOIN user.accountDetail account WHERE account.userStatus= :userStatus";
+		TypedQuery<String> query=entityManager.createQuery(Qstr,String.class).setParameter("userStatus", status.non_active);
+		List<String> userList;
+		try {
+		userList= query.getResultList();
+		}
+		catch(Exception exception)
+		{
+			throw new UnauthorizedAccessException("No user Exist for given criteria");
+		}
+		return userList;
+	}
+	
 	@Override
 	public WalletUser getUser(Integer userId)
 	{   
@@ -76,6 +112,7 @@ public class OnlineWalletDaoImp implements OnlineWalletDao {
 		WalletAccount account=entityManager.find(WalletAccount.class, accountId);
 		return account;
 	}
+	
 	@Override
 	public WalletTransactions getTransaction(Integer transactionId)
 	{

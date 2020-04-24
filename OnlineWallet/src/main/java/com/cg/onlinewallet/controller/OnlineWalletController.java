@@ -1,5 +1,7 @@
 package com.cg.onlinewallet.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,10 +32,10 @@ public class OnlineWalletController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<Integer> regsiterUser(@RequestBody WalletUser user)
+	public ResponseEntity<String> regsiterUser(@RequestBody WalletUser user)
 	{   
-		Integer userId=service.resgisterUser(user);
-		return new ResponseEntity<Integer>(userId,HttpStatus.OK);
+		service.resgisterUser(user);
+		return new ResponseEntity<String>("The User is Registered successfully",HttpStatus.OK);
 		
 	}
 	@PutMapping("/addmoney/{userId}")
@@ -62,5 +64,30 @@ public class OnlineWalletController {
 		Integer userId=service.login(loginName, password);
 		return new ResponseEntity<Integer>(userId,HttpStatus.OK);
 	}
-
+	@GetMapping("/admin")
+	public ResponseEntity<Integer> loginAdmin(String loginName, String password)
+	{
+		Integer userId=service.loginAdmin(loginName, password);
+		return new ResponseEntity<Integer>(userId,HttpStatus.OK);
+	}
+	
+	@GetMapping("/admin/{adminId}/userlist")
+	public ResponseEntity<List<String>> getUserList(@PathVariable("adminId") Integer userId,String userStatus)
+	{
+		List<String> userList=service.getUserList(userId,userStatus);
+		return new ResponseEntity<List<String>>(userList,HttpStatus.OK);
+	}
+	
+	@PutMapping("/admin/{adminId}/changestatus")
+	public ResponseEntity<String> changeUserStatus(@PathVariable("adminId")Integer adminId,String loginName,String userStatus)
+	{   service.changeUserStatus(adminId, loginName, userStatus);
+		return new ResponseEntity<String>("The User Status Changed Successfully",HttpStatus.OK);
+	}
+    
+	@PutMapping("/logout/{userId}")
+	public ResponseEntity<String> logout(@PathVariable("userId") Integer userId)
+	{
+		service.logout(userId);
+		return new ResponseEntity<String>("Logged Out Successfully",HttpStatus.OK);
+	}
 }

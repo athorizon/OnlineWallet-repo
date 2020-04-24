@@ -25,6 +25,17 @@ public class OnlineWalletServiceImp implements OnlineWalletService {
     @Autowired
     private OnlineWalletDao dao;
     
+    @Override
+    public Integer login(String loginName, String password)
+    {
+    	if(dao.checkUserByLoginName(loginName)==false)
+    		throw new WrongValueException("The entered Login Name does not exist, Please enter a valid loginName");
+    	WalletUser user=dao.getUserByLoginName(loginName);
+    	if(user.getPassword().equals(password)==false)
+    		throw new ValidationException("The LoginName and password Combination does not match");
+    	return user.getUserID();
+    		
+    }
 	@Override
 	public Integer resgisterUser(WalletUser user) {
 		// TODO Auto-generated method stub
@@ -57,7 +68,7 @@ public class OnlineWalletServiceImp implements OnlineWalletService {
 	}
 	@Override
 	public void transactMoney(Integer userId, String beneficiaryLoginName,Double amount)
-	{
+	{   
 		checkBeneficiary(beneficiaryLoginName);
 		checkBalanceLimit(userId,amount);
 	    WalletUser beneficiary=dao.getUserByLoginName(beneficiaryLoginName);

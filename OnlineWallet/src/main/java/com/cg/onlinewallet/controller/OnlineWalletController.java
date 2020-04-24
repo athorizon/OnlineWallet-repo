@@ -37,7 +37,7 @@ public class OnlineWalletController {
 		
 	}
 	@PutMapping("/addmoney/{userId}")
-	public ResponseEntity<String> addMoney(@PathVariable("userId") Integer userId, @RequestBody Double amount)
+	public ResponseEntity<String> addMoney(@PathVariable("userId") Integer userId, Double amount)
 	{
 		service.addMoney(userId, amount);
 		return new ResponseEntity<String>("the money is added in the account succesfully",HttpStatus.OK);
@@ -50,10 +50,17 @@ public class OnlineWalletController {
 	}
 	
 	@PutMapping("/transactmoney/{userId}")
-	public ResponseEntity<String> transactMoney(@PathVariable("userId") Integer userId,@RequestBody Double amount,@RequestBody String loginName)
+	public ResponseEntity<String> transactMoney(@PathVariable("userId") Integer userId, Double amount, String loginName)
 	{
 		service.transactMoney(userId, loginName,amount);
 		return new ResponseEntity<String>("Transaction Completed",HttpStatus.OK);
+	}
+	
+	@GetMapping("/login")
+	public ResponseEntity<Integer> login(String loginName, String password)
+	{
+		Integer userId=service.login(loginName, password);
+		return new ResponseEntity<Integer>(userId,HttpStatus.OK);
 	}
 
 }

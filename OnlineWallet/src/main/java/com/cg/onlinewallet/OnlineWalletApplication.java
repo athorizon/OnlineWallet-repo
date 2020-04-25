@@ -51,16 +51,22 @@ public class OnlineWalletApplication implements CommandLineRunner{
 		 list1.add(wat2);
 		 list2.add(wat3);
 		 list2.add(wat4);
-	     WalletAccount wa1=new WalletAccount(1000.00,list1);
-	     WalletAccount wa2=new WalletAccount(1000.00,list2);
-
-	     WalletUser wu1=new WalletUser("Arushi Bhardwaj","arushi@123","8728925856","Arushi123",wa1);
-		 WalletUser wu2=new WalletUser("Kunal Maheshwari","kunal@123","9897446350","Kunal123",wa2);
+	     WalletAccount wa1=new WalletAccount(1000.00,list1,status.active);
+	     WalletAccount wa2=new WalletAccount(1000.00,list2,status.non_active);
+	     WalletAccount wa3=new WalletAccount(0.0,new ArrayList<WalletTransactions>(),status.active);
+	     
+	     WalletUser wu1=new WalletUser("Arushi Bhardwaj","arushi@123","8728925856","Arushi123",type.user,wa1);
+		 WalletUser wu2=new WalletUser("Kunal Maheshwari","kunal@123","9897446350","Kunal123",type.user,wa2);
+		 WalletUser wu3=new WalletUser("Admin","Admin123","1234567890","Admin",type.admin,wa3);
 		 
 		 em.persist(wu1);
 	     em.persist(wu2);
+	     em.persist(wu3);
+	     
 	     em.persist(wa1);
 	     em.persist(wa2);
+	     em.persist(wa3);
+	     
 	     em.persist(wat1);
 		 em.persist(wat2);
 		 em.persist(wat3);

@@ -39,7 +39,7 @@ public class OnlineWalletController {
 	@PostMapping("/register")
 	public ResponseEntity<String> regsiterUser(@RequestBody WalletUser user)
 	{   
-		service.resgisterUser(user);
+		service.registerUser(user);
 		return new ResponseEntity<String>("The User is Registered successfully",HttpStatus.OK);
 		
 	}

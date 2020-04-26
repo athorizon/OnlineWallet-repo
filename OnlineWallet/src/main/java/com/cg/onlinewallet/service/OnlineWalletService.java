@@ -5,7 +5,7 @@ import java.util.List;
 import com.cg.onlinewallet.entities.WalletUser;
 
 public interface OnlineWalletService {
-	Integer registerUser(WalletUser user);
+	void registerUser(WalletUser user);
     void addMoney(Integer userId, Double Amount);
     Double showBalance(Integer userId);
     void transactMoney(Integer userId, String beneficiaryLoginName, Double amount);

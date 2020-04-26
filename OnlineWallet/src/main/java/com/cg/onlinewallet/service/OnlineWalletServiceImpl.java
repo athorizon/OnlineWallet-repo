@@ -128,7 +128,7 @@ public class OnlineWalletServiceImp implements OnlineWalletService {
     	account.setUserStatus(status.non_active);
     }
 	@Override
-	public void resgisterUser(WalletUser user) {
+	public void registerUser(WalletUser user) {
 		// TODO Auto-generated method stub
 		checkLoginName(user.getLoginName());
 		WalletAccount account=new WalletAccount(0.00,null,status.non_active);

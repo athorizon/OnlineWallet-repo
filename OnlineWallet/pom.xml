@@ -12,7 +12,6 @@
 	<artifactId>OnlineWallet</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>OnlineWallet</name>
-	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -50,4 +49,5 @@
 		</plugins>
 	</build>
 
+	<description>Project enables user to add a user into wallet and furthur enables user to loggin and user services t0 add money, viewing balance and transacting money into other user's account.</description>
 </project>

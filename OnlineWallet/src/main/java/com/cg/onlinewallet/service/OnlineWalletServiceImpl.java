@@ -25,9 +25,9 @@ import com.cg.onlinewallet.exceptions.*;
 
 @Transactional
 @Service
-public class OnlineWalletServiceImp implements OnlineWalletService {
+public class OnlineWalletServiceImpl implements OnlineWalletService {
 
-	public OnlineWalletServiceImp() {
+	public OnlineWalletServiceImpl() {
 		// TODO Auto-generated constructor stub
 	}
     @Autowired
@@ -47,7 +47,7 @@ public class OnlineWalletServiceImp implements OnlineWalletService {
     	return user.getUserID();
     		
     }
-    private boolean checkLoginStatus(Integer userId)
+    public boolean checkLoginStatus(Integer userId)
     {   //returns false if the user is not loggedin
     	WalletUser user=dao.getUser(userId);
     	if(user.getLoginStatus()==login.LoggedOut)
@@ -203,14 +203,14 @@ public class OnlineWalletServiceImp implements OnlineWalletService {
 		account.setAccountBalance(balance);
 		dao.flush();
 	}
-	private boolean checkLoginName(String loginName) {
+	public boolean checkLoginName(String loginName) {
 		 if(dao.checkUserByLoginName(loginName)==true)
 			 throw new WrongValueException("Entered Login Name is already present, please enter another login Name");
 		else 
 			return true;
 	}
 	
-	private boolean checkBeneficiary(String beneficiaryLoginName)
+	public boolean checkBeneficiary(String beneficiaryLoginName)
 	{
 		boolean check=dao.checkUserByLoginName(beneficiaryLoginName);
 	    if(check==false)
@@ -219,7 +219,7 @@ public class OnlineWalletServiceImp implements OnlineWalletService {
 			return true;
 	}
 	
-	private boolean checkBalanceLimit(Integer userId,Double amount)
+	public boolean checkBalanceLimit(Integer userId,Double amount)
 	{
 		WalletUser user=dao.getUser(userId);
 		WalletAccount account=user.getAccountDetail();

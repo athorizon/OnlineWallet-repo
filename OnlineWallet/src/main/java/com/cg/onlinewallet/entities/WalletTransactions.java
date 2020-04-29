@@ -11,9 +11,13 @@ public class WalletTransactions implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tran_seq")
 	private Integer transactionID;
+	@Column(name="description",length=150)
 	private String description;
+	@Column(name="data_of_transaction")
 	private LocalDateTime dateOfTransaction;
+	@Column(name="amount",precision=2)
 	private Double amount;
+	@Column(name="balance",precision=2)
 	private Double accountBalance;
 
 	public Integer getTransactionID() {

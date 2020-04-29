@@ -10,9 +10,13 @@ public class WalletUser implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
 	private Integer userID;
+	@Column(name="user_name",length=30)
 	private String userName;
+	@Column(name="password",length=16)
 	private String password;
+	@Column(name="phone_number",length=10)
 	private String phoneNumber;
+	@Column(name="login_name",length=50)
 	private String loginName;
 
 	public enum type {
@@ -20,14 +24,8 @@ public class WalletUser implements Serializable {
 	};
 
 	@Enumerated(EnumType.STRING)
+	@Column(name="user_type")
 	private type userType = type.user;
-
-	public enum login {
-		loggedIn, LoggedOut
-	};
-
-	@Enumerated(EnumType.STRING)
-	private login loginStatus = login.LoggedOut;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	WalletAccount accountDetail;
@@ -95,13 +93,4 @@ public class WalletUser implements Serializable {
 	public WalletUser() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public login getLoginStatus() {
-		return loginStatus;
-	}
-
-	public void setLoginStatus(login loginStatus) {
-		this.loginStatus = loginStatus;
-	}
-
 }

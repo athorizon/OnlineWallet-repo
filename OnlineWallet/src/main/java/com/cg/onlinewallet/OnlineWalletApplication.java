@@ -30,8 +30,8 @@ public class OnlineWalletApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		/*************************************************************************************************************
-		 Data insertion below and should be removed when completed 
-		 
+		 Data insertion below and should be removed when completed
+		WalletTransactions wat1 = new WalletTransactions("amount debited", LocalDateTime.now(), 500.0, 500.0);
 		WalletTransactions wat2 = new WalletTransactions("amount credited", LocalDateTime.now(), 500.0, 1000.0);
 		WalletTransactions wat3 = new WalletTransactions("amount credited", LocalDateTime.now(), 500.0, 1500.0);
 		WalletTransactions wat4 = new WalletTransactions("amount debited", LocalDateTime.now(), 500.0, 1000.0);
@@ -51,7 +51,7 @@ public class OnlineWalletApplication implements CommandLineRunner {
 
 		WalletUser wu1 = new WalletUser("Kunal Maheshwari", "Kunal@123", "9897446350", "kunalmaheshwari26@gmail.com",
 				type.user, wa1);
-		WalletUser wu2 = new WalletUser("Aarushi Bhardwaj", "Aarushi@123", "9876543210", "arushi.b113@gmail.com ",
+		WalletUser wu2 = new WalletUser("Aarushi Bhardwaj", "Aarushi@123", "9876543210", "arushi.b113@gmail.com",
 				type.user, wa2);
 		WalletUser wu3 = new WalletUser("Admin", "Admin123", "1234567890", "Admin", type.admin, wa3);
 		WalletUser wu4 = new WalletUser("User1", "User1@123", "7894561230", "User1@gmail.com", type.user, wa4);
@@ -74,7 +74,7 @@ public class OnlineWalletApplication implements CommandLineRunner {
 		em.persist(wat3);
 		em.persist(wat4);
 		
-		**************************************************************************************************************/
+		/**************************************************************************************************************/
 	}
     
 }

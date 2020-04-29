@@ -11,6 +11,7 @@ public class WalletAccount implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "acc_seq")
 	private Integer accountID;
+	@Column(name="balance",precision=2)
 	private Double accountBalance;
 
 	public enum status {
@@ -18,6 +19,7 @@ public class WalletAccount implements Serializable {
 	};
 
 	@Enumerated(EnumType.STRING)
+	@Column(name="user_status")
 	private status userStatus = status.non_active;
 
 	@OneToMany(cascade = CascadeType.ALL)

@@ -33,7 +33,7 @@ public class OnlineWalletController {
 
 	@PostMapping("/register")
 	public ResponseEntity<String> regsiterUser(@RequestBody WalletUser user) {
-		service.resgisterUser(user);
+		service.registerUser(user);
 		return new ResponseEntity<String>("The User is Registered successfully", HttpStatus.OK);
 
 	}
@@ -62,7 +62,7 @@ public class OnlineWalletController {
 		Integer userId = service.login(loginName, password);
 		return new ResponseEntity<Integer>(userId, HttpStatus.OK);
 	}
-
+    
 	@GetMapping("/admin")
 	public ResponseEntity<Integer> loginAdmin(String loginName, String password) {
 		Integer userId = service.loginAdmin(loginName, password);
@@ -80,11 +80,5 @@ public class OnlineWalletController {
 			String userStatus) {
 		service.changeUserStatus(adminId, loginName, userStatus);
 		return new ResponseEntity<String>("The User Status Changed Successfully", HttpStatus.OK);
-	}
-
-	@PutMapping("/logout/{userId}")
-	public ResponseEntity<String> logout(@PathVariable("userId") Integer userId) {
-		service.logout(userId);
-		return new ResponseEntity<String>("Logged Out Successfully", HttpStatus.OK);
 	}
 }

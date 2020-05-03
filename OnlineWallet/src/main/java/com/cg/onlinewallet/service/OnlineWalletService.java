@@ -5,9 +5,9 @@ import java.util.List;
 import com.cg.onlinewallet.entities.WalletUser;
 
 public interface OnlineWalletService {
-	void registerUser(WalletUser user);
+	String registerUser(WalletUser user);
 
-	void addMoney(Integer userId, Double Amount);
+	Double addMoney(Integer userId, Double Amount);
 
 	Double showBalance(Integer userId);
 
@@ -19,6 +19,6 @@ public interface OnlineWalletService {
 
 	List<String> getUserList(Integer userId, String userStatus);
 
-	void changeUserStatus(Integer adminId, String loginName, String userStatus);
+	String changeUserStatus(Integer adminId, String loginName, String userStatus);
 
 }

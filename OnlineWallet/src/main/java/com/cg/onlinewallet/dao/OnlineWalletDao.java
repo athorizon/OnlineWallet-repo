@@ -18,9 +18,9 @@ public interface OnlineWalletDao {
 
 	void saveAccount(WalletAccount account);
 
-	WalletUser getUserByLoginName(String loginName);
+	WalletUser getUserByEmail(String email);
 
-	boolean checkUserByLoginName(String loginName);
+	boolean checkUserByEmail(String email);
 
 	void saveTransaction(WalletTransactions transaction);
 

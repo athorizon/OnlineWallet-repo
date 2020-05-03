@@ -16,8 +16,8 @@ public class WalletUser implements Serializable {
 	private String password;
 	@Column(name="phone_number",length=10)
 	private String phoneNumber;
-	@Column(name="login_name",length=50)
-	private String loginName;
+	@Column(name="email",length=50)
+	private String email;
 
 	public enum type {
 		admin, user
@@ -58,21 +58,21 @@ public class WalletUser implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getLoginName() {
-		return loginName;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public WalletUser(String userName, String password, String phoneNumber, String loginName, type userType,
+	public WalletUser(String userName, String password, String phoneNumber, String email, type userType,
 			WalletAccount accountDetail) {
 		super();
 		this.userName = userName;
 		this.password = password;
 		this.phoneNumber = phoneNumber;
-		this.loginName = loginName;
+		this.email = email;
 		this.userType = userType;
 
 		this.accountDetail = accountDetail;

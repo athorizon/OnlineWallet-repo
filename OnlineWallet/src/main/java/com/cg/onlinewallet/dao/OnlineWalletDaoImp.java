@@ -37,11 +37,12 @@ public class OnlineWalletDaoImp implements OnlineWalletDao {
 	public void saveTransaction(WalletTransactions transaction) {
 		entityManager.persist(transaction);
 	}
-
+    
+	
 	@Override
-	public boolean checkUserByLoginName(String loginName) { // return false if the user is not present;
-		String Qstr = "SELECT user.loginName FROM WalletUser user WHERE user.loginName= :loginName";
-		TypedQuery<String> query = entityManager.createQuery(Qstr, String.class).setParameter("loginName", loginName);
+	public boolean checkUserByEmail(String email) { // return false if the user is not present;
+		String Qstr = "SELECT user.email FROM WalletUser user WHERE user.email= :email";
+		TypedQuery<String> query = entityManager.createQuery(Qstr, String.class).setParameter("email", email);
 		try {
 			query.getSingleResult();
 		} catch (Exception ex) {
@@ -51,16 +52,16 @@ public class OnlineWalletDaoImp implements OnlineWalletDao {
 	}
 
 	@Override
-	public WalletUser getUserByLoginName(String loginName) {
-		String Qstr = "SELECT user FROM WalletUser user WHERE user.loginName= :loginName";
-		TypedQuery<WalletUser> query = entityManager.createQuery(Qstr, WalletUser.class).setParameter("loginName",
-				loginName);
+	public WalletUser getUserByEmail(String email) {
+		String Qstr = "SELECT user FROM WalletUser user WHERE user.email= :email";
+		TypedQuery<WalletUser> query = entityManager.createQuery(Qstr, WalletUser.class).setParameter("email",
+				email);
 		return query.getSingleResult();
 	}
 
 	@Override
 	public List<String> getActiveUserList() {
-		String Qstr = "SELECT user.loginName FROM WalletUser user JOIN user.accountDetail account WHERE account.userStatus= :userStatus";
+		String Qstr = "SELECT user.email FROM WalletUser user JOIN user.accountDetail account WHERE account.userStatus= :userStatus";
 		TypedQuery<String> query = entityManager.createQuery(Qstr, String.class).setParameter("userStatus",
 				status.active);
 		List<String> userList;
@@ -74,7 +75,7 @@ public class OnlineWalletDaoImp implements OnlineWalletDao {
 
 	@Override
 	public List<String> getNonActiveUserList() {
-		String Qstr = "SELECT user.loginName FROM WalletUser user JOIN user.accountDetail account WHERE account.userStatus= :userStatus";
+		String Qstr = "SELECT user.email FROM WalletUser user JOIN user.accountDetail account WHERE account.userStatus= :userStatus";
 		TypedQuery<String> query = entityManager.createQuery(Qstr, String.class).setParameter("userStatus",
 				status.non_active);
 		List<String> userList;

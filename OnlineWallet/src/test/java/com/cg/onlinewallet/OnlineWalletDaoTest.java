@@ -1,21 +1,29 @@
 package com.cg.onlinewallet;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import com.cg.onlinewallet.dao.OnlineWalletDaoImp;
+import com.cg.onlinewallet.entities.WalletUser;
 
-public class OnlineWalletDaoTest {
+@SpringBootTest
+class OnlineWalletApplicationDaoTests {
+	@Autowired
+	OnlineWalletDaoImp dao;
+
 	@Test
-	public void checkUserByLoginNameTest()
-	{
-		assertEquals(false,new OnlineWalletDaoImp().checkUserByLoginName("xyz123@gmail.com"));
+	void checkUserByLoginNameTestTrue() {
+		assertTrue(dao.checkUserByEmail("kunalmaheshwari26@gmail.com"));
 	}
 	@Test
-	public void checkUserByLoginNameTest1()
-	{
-		assertEquals(true,new OnlineWalletDaoImp().checkUserByLoginName("arushi.b113@gmail.com"));
+	void checkUserByLoginNameTestFalse() {
+		assertFalse(dao.checkUserByEmail("testString"));
+	}
+	@Test
+	void getUserByLoginNameTest()
+	{   
+		assertEquals(WalletUser.class,dao.getUserByEmail("User1@gmail.com").getClass());
 	}
 
 }

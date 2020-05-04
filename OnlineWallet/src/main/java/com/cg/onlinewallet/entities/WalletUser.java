@@ -1,9 +1,3 @@
-/**************************************************************************************************************************************************************
- * @author Arushi Bhardwaj
- * Description: It is an entity class for Wallet User(using @Entity) that provides all the variables we are going to use in our project for registering a new user.
- *              It also gives the information about the primary key(UserID) using @id annotation and the relation with other tables in our database.
- * Created Date:
- ***************************************************************************************************************************************************************/
 package com.cg.onlinewallet.entities;
 
 import java.io.Serializable;
@@ -22,8 +16,8 @@ public class WalletUser implements Serializable {
 	private String password;
 	@Column(name="phone_number",length=10)
 	private String phoneNumber;
-	@Column(name="login_name",length=50)
-	private String loginName;
+	@Column(name="email",length=50)
+	private String email;
 
 	public enum type {
 		admin, user
@@ -35,14 +29,6 @@ public class WalletUser implements Serializable {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	WalletAccount accountDetail;
-	
-/**********************************************************************************************************************************************
-* Method:getters(for eg:getUserID()) and setters(for eg:setUserName(String userName))
-* Description:getters for retrieving and setters for updating the values of the variables.
-* Created By:Arushi Bhardwaj
-* Created on:
-***********************************************************************************************************************************************/
-		
 
 	public Integer getUserID() {
 		return userID;
@@ -72,21 +58,21 @@ public class WalletUser implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getLoginName() {
-		return loginName;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public WalletUser(String userName, String password, String phoneNumber, String loginName, type userType,
+	public WalletUser(String userName, String password, String phoneNumber, String email, type userType,
 			WalletAccount accountDetail) {
 		super();
 		this.userName = userName;
 		this.password = password;
 		this.phoneNumber = phoneNumber;
-		this.loginName = loginName;
+		this.email = email;
 		this.userType = userType;
 
 		this.accountDetail = accountDetail;
@@ -108,4 +94,3 @@ public class WalletUser implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 }
-

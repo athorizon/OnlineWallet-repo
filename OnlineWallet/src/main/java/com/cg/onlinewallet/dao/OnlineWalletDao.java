@@ -9,14 +9,23 @@ import com.cg.onlinewallet.entities.WalletUser;
 
 public interface OnlineWalletDao {
 	void saveUser(WalletUser user);
+
 	WalletUser getUser(Integer userId);
+
 	WalletAccount getAccount(Integer accountId);
+
 	WalletTransactions getTransaction(Integer transactionId);
+
 	void saveAccount(WalletAccount account);
-	WalletUser getUserByLoginName(String loginName);
-	boolean checkUserByLoginName(String loginName);
+
+	WalletUser getUserByEmail(String email);
+
+	boolean checkUserByEmail(String email);
+
 	void saveTransaction(WalletTransactions transaction);
+
 	List<String> getActiveUserList();
+
 	List<String> getNonActiveUserList();
-	
+
 }

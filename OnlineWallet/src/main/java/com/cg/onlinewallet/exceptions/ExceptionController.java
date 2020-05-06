@@ -1,3 +1,7 @@
+/*********************************************************************************************************************************************************************************************
+* @author:Kunal Maheshwari
+* Description: It is a controller class for handling the exceptions which will give appropriate messages when some unlikely condition occurs.
+**********************************************************************************************************************************************************************************************/
 package com.cg.onlinewallet.exceptions;
 
 import org.springframework.http.HttpStatus;

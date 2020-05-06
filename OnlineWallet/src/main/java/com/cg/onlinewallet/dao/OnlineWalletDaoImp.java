@@ -1,3 +1,7 @@
+/*********************************************************************************************************************************************************************************************
+* @author:Kunal Maheshwari
+* Description: It is a dao class which is used to access the data stored in our relational database.
+**********************************************************************************************************************************************************************************************/
 package com.cg.onlinewallet.dao;
 
 import java.util.List;
@@ -11,7 +15,9 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.onlinewallet.entities.*;
 import com.cg.onlinewallet.entities.WalletAccount.status;
+import com.cg.onlinewallet.exceptions.InvalidException;
 import com.cg.onlinewallet.exceptions.UnauthorizedAccessException;
+import com.cg.onlinewallet.exceptions.ValidationException;
 
 @Repository
 public class OnlineWalletDaoImp implements OnlineWalletDao {
@@ -37,9 +43,15 @@ public class OnlineWalletDaoImp implements OnlineWalletDao {
 	public void saveTransaction(WalletTransactions transaction) {
 		entityManager.persist(transaction);
 	}
-    
-	
-	@Override
+ 
+/*********************************************************************************************************************
+* Method: checkUserByEmail
+* Description: To check that whether a user is present with given email or not
+* @param email:User's email
+* @returns Boolean: true if the user is present with entered email, otherwise false
+* Created By - Arushi Bhardwaj
+***********************************************************************************************************************/
+    @Override
 	public boolean checkUserByEmail(String email) { // return false if the user is not present;
 		String Qstr = "SELECT user.email FROM WalletUser user WHERE user.email= :email";
 		TypedQuery<String> query = entityManager.createQuery(Qstr, String.class).setParameter("email", email);
@@ -50,6 +62,14 @@ public class OnlineWalletDaoImp implements OnlineWalletDao {
 		}
 		return true;
 	}
+    
+/*********************************************************************************************************************
+* Method: getUserByEmail
+* Description: To access the user with the given email
+* @param email:User's email
+* @returns user: It will return the user present with entered email
+* Created By - Arushi Bhardwaj
+***********************************************************************************************************************/
 
 	@Override
 	public WalletUser getUserByEmail(String email) {
@@ -58,8 +78,14 @@ public class OnlineWalletDaoImp implements OnlineWalletDao {
 				email);
 		return query.getSingleResult();
 	}
-
-	@Override
+	
+/*********************************************************************************************************************
+* Method: getActiveUserList
+* Description: To access the list of users whose account is active in nature
+* @returns userList: It will return the users whose accounts are active
+* Created By - Kunal Maheshwari
+***********************************************************************************************************************/
+    @Override
 	public List<String> getActiveUserList() {
 		String Qstr = "SELECT user.email FROM WalletUser user JOIN user.accountDetail account WHERE account.userStatus= :userStatus";
 		TypedQuery<String> query = entityManager.createQuery(Qstr, String.class).setParameter("userStatus",
@@ -72,6 +98,13 @@ public class OnlineWalletDaoImp implements OnlineWalletDao {
 		}
 		return userList;
 	}
+    
+/*********************************************************************************************************************
+ * * Method: getNonActiveUserList
+   * Description: To access the list of users whose account is inactive in nature
+   * @returns userList: It will return the users whose accounts are inactive
+   * Created By - Kunal Maheshwari
+   **********************************************************************************************************************/
 
 	@Override
 	public List<String> getNonActiveUserList() {

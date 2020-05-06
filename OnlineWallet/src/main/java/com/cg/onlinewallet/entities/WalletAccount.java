@@ -1,3 +1,8 @@
+/*********************************************************************************************************************************************************************************************
+* @author:Kunal Maheshwari,Arushi Bhardwaj
+* Description: It is an entity class used to define variables that are going to be used in the application.
+*              It also contains getter and setter methods for retrieving and updating the values of the variables.
+**********************************************************************************************************************************************************************************************/
 package com.cg.onlinewallet.entities;
 
 import java.io.Serializable;

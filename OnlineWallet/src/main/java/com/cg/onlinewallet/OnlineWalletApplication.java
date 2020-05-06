@@ -53,7 +53,7 @@ public class OnlineWalletApplication implements CommandLineRunner {
 				type.user, wa1);
 		WalletUser wu2 = new WalletUser("Aarushi Bhardwaj", "Aarushi@123", "9876543210", "arushi.b113@gmail.com",
 				type.user, wa2);
-		WalletUser wu3 = new WalletUser("Admin", "Admin123", "1234567890", "Admin", type.admin, wa3);
+		WalletUser wu3 = new WalletUser("Admin", "Admin@123", "1234567890", "Admin@capgemini.com", type.admin, wa3);
 		WalletUser wu4 = new WalletUser("User1", "User1@123", "7894561230", "User1@gmail.com", type.user, wa4);
 		WalletUser wu5 = new WalletUser("User2", "User2@123", "7894561230", "User2gmail.com", type.user, wa5);
 

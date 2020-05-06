@@ -47,6 +47,8 @@ public class OnlineWalletServiceImp implements OnlineWalletService {
 
 	@Override
 	public Integer login(String email, String password) {
+		if(!onlineWalletDao.checkUserByEmail(email))
+			throw new UnauthorizedAccessException("No User exist for this email address. Kindly Register");
 		WalletUser user = onlineWalletDao.getUserByEmail(email);
 		WalletAccount account = user.getAccountDetail();
 		if (account.getUserStatus() == status.non_active)
@@ -78,6 +80,8 @@ public class OnlineWalletServiceImp implements OnlineWalletService {
 	 ***********************************************************************************************************************/
 	@Override
 	public Integer loginAdmin(String email, String password) {
+		if(!onlineWalletDao.checkUserByEmail(email))
+			throw new UnauthorizedAccessException("No Admin exist for this email address. Kindly ask administration to get yourself registered");
 		WalletUser user = onlineWalletDao.getUserByEmail(email);
 		if (user.getUserType() == type.user)
 			throw new UnauthorizedAccessException("You are not authorized to login from here");

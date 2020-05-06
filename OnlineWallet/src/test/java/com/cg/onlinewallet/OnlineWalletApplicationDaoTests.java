@@ -14,16 +14,16 @@ class OnlineWalletApplicationDaoTests {
 
 	@Test
 	void checkUserByLoginNameTestTrue() {
-		assertTrue(dao.checkUserByLoginName("kunalmaheshwari26@gmail.com"));
+		assertTrue(dao.checkUserByEmail("kunalmaheshwari26@gmail.com"));
 	}
 	@Test
 	void checkUserByLoginNameTestFalse() {
-		assertFalse(dao.checkUserByLoginName("testString"));
+		assertFalse(dao.checkUserByEmail("testString"));
 	}
 	@Test
 	void getUserByLoginNameTest()
 	{   
-		assertEquals(WalletUser.class,dao.getUserByLoginName("User1@gmail.com").getClass());
+		assertEquals(WalletUser.class,dao.getUserByEmail("User1@gmail.com").getClass());
 	}
 
 }

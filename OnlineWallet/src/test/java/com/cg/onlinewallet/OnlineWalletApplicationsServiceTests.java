@@ -36,8 +36,8 @@ public class OnlineWalletApplicationsServiceTests {
 	@BeforeEach
 	public void assignObject()
 	{
-		user=onlineWalletDao.getUserByLoginName("kunalmaheshwari26@gmail.com");
-		admin=onlineWalletDao.getUserByLoginName("Admin");
+		user=onlineWalletDao.getUserByEmail("kunalmaheshwari26@gmail.com");
+		admin=onlineWalletDao.getUserByEmail("Admin");
 	}
 	@Test
 	public void addMoneyTest() {
@@ -77,7 +77,7 @@ public class OnlineWalletApplicationsServiceTests {
 	@Test
 	public void transactMoneyTest5() {
 		Double balance=user.getAccountDetail().getAccountBalance();
-		WalletUser beneficiary=onlineWalletDao.getUserByLoginName("arushi.b113@gmail.com");
+		WalletUser beneficiary=onlineWalletDao.getUserByEmail("arushi.b113@gmail.com");
 		Double beneficiaryBalance=beneficiary.getAccountDetail().getAccountBalance();
 		onlineWalletService.transactMoney(user.getUserID(), "arushi.b113@gmail.com", balance-500.00);
 		assertTrue(beneficiary.getAccountDetail().getAccountBalance().equals(beneficiaryBalance+500.00));

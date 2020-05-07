@@ -1,0 +1,48 @@
+<div class="container form-group" text-align="center" align="center">
+  <h1>Transfer Money to another account!</h1>
+  <form [formGroup]="transferFundForm" (ngSubmit)="onTransferFundFormSubmit()">
+    <table>
+      <tr>
+        <td><label>Email of Beneficiary</label></td>
+        <td><input type="text" formControlName="email" class="form-control" placeholder="Enter email">
+          <div *ngIf="transferFundForm.get('email').errors  && isSubmitted">
+            <div *ngIf="transferFundForm.get('email').hasError('required')">
+              <span style="color:blue;">Email is required</span>
+            </div>
+            <div *ngIf="transferFundForm.get('email').hasError('pattern')">
+              <span style="color:blue;">Enter valid email.</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Amount to be transferred</label></td>
+        <td><input type="amount" formControlName="amount" class="form-control" placeholder="Enter Amount">
+          <div *ngIf="transferFundForm.get('amount').errors  && isSubmitted">
+            <div *ngIf="transferFundForm.get('amount').hasError('required')">
+              <span style="color:blue;">Amount is required</span>
+            </div>
+            <div *ngIf="transferFundForm.get('amount').hasError('0')">
+              <span style="color:blue;">Amount cannot be zero</span>
+            </div>
+            <div *ngIf="transferFundForm.get('amount').hasError('pattern')">
+              <span style="color:blue;">Enter valid amount.</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <button type="submit" class="btn btn-danger btn-lg">TRANFER MONEY</button>
+        </td>
+      </tr>
+
+    </table>
+  </form>
+</div>
+<div class="alert alert-danger" *ngIf="checkError">
+  <strong>ERROR!</strong> {{errorMessage}}
+</div>
+<div class="alert alert-success" *ngIf="checkInfo">
+  <strong>SUCCESS!!</strong> {{infoMessage}}
+</div>

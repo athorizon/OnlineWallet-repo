@@ -1,0 +1,74 @@
+<div class="container form-group" text-align="center" align="center">
+  <h1>Add Money To Your Account</h1>
+  <p>Select the mode</p>
+  <table>
+    <tr>
+      <td><button type="button" class="btn btn-success btn-lg" (click)=checkDebit()>Debit Card</button><br><br></td>
+      <td> <button type="button" class="btn btn-success btn-lg" (click)=checkNetBanking()>NetBanking</button><br><br>
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <div *ngIf="valueDebit" style="width:500px;height:400px;border:1px solid #000;">
+        <fieldset>
+          <p><b>Please fill the information</b>
+            <p>
+              <label>Enter Debit Card Number:</label>
+              <input type="number"><br><br>
+              <label>Enter Expiry Date:</label>
+              <input type="date"><br><br>
+              <label>Enter Cvv:</label>
+              <input type="number"><br><br>
+              <label>Enter Owner's Name:</label>
+              <input type="text"><br><br>
+              <button type="submit" class="btn btn-danger btn-lg" (click)="enableAmountButton()">Submit</button>
+        </fieldset>
+      </div>
+
+      <div *ngIf="valueNetbanking" style="width:500px;height:200px;border:1px solid #000;">
+        <fieldset>
+          <p><b>Please fill the information</b>
+            <p>
+              <label>Enter your current address:</label>
+              <input type="text"><br><br>
+              <button type="submit" class="btn btn-danger btn-lg" (click)="enableAmountButton()">Submit</button>
+        </fieldset>
+      </div>
+
+    </tr>
+  </table>
+  <form [formGroup]="addMoneyForm" (ngSubmit)="onAddMoneyFormSubmit()">
+    <table>
+      <tr>
+        <td><label>Enter the Amount:</label></td>
+        <td><input type="number" formControlName="amount" class="form-control" placeholder="Enter Amount"></td>
+        <div *ngIf="addMoneyForm.get('amount').errors  && isSubmitted">
+          <div *ngIf="addMoneyForm.get('amount').hasError('required')">
+            <span style="color:blue;">Amount is required</span>
+          </div>
+          <div *ngIf="addMoneyForm.get('amount').hasError('0')">
+            <span style="color:blue;">Amount cannot be zero</span>
+          </div>
+          <div *ngIf="addMoneyForm.get('amount').hasError('pattern')">
+            <span style="color:blue;">Enter valid amount.</span>
+          </div>
+        </div>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td colspan="2" align="center">
+          <button type="submit" class="btn btn-danger btn-lg" [disabled]="!enableButton" (click)="addMoney()">ADD
+            AMOUNT</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <div class="alert alert-danger" *ngIf="checkError">
+    <strong>ERROR!</strong> {{errorMessage}}
+  </div>
+  <div class="alert alert-success" *ngIf="checkInfo">
+    <strong>SUCCESS!</strong> {{infoMessage}}
+  </div>
+</div>

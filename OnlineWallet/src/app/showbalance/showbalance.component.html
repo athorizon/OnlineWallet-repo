@@ -1,0 +1,7 @@
+<div align="center">
+    <h1>Your Current Balance is:</h1>
+    <div style="width:500px;height:100px;border:1px solid #000;">Rs: {{balance}}</div>
+</div>
+<div class="alert alert-danger" *ngIf="checkError">
+    <strong>ERROR!</strong> {{errorMessage}}
+</div>

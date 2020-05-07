@@ -1,0 +1,104 @@
+<div class="container form-group" text-align="center" align="center">
+  <h1>List of Users</h1>
+  <p>Select the users</p>
+  <table>
+    <tr>
+      <td><button type="button" class="btn btn-success btn-lg" (click)=checkActiveUser()>Active Users</button><br><br>
+      </td>
+      <td><button type="button" class="btn btn-danger btn-lg" (click)=checkNonActiveUser()>Non-Active
+          Users</button><br><br></td>
+    </tr>
+  </table>
+  <table class="table" *ngIf="valueActiveUser">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Email Address</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let email of activeEmails">
+      <td>{{email}}</td>
+      <td> <button class="btn btn-danger" (click)="changeStatusNonActive(email)">DeActivate</button></td>
+    </tr>
+  </table>
+  <table class="table" *ngIf="valueNonActiveUser">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Email Address</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let email of nonActiveEmails">
+      <td>{{email}}</td>
+      <td><button class="btn btn-danger" (click)="changeStatusActive(email)">Activate</button></td>
+    </tr>
+  </table>
+  <div class="alert alert-danger" *ngIf="checkErrorActive">
+    <strong>ERROR!</strong> {{errorMessageActive}}
+  </div>
+  <div class="alert alert-success" *ngIf="checkInfoActive">
+    <strong>SUCCESS!!</strong> {{infoMessageActive}}
+  </div>
+  <div class="alert alert-danger" *ngIf="checkErrorInActive">
+    <strong>ERROR!</strong> {{errorMessageInActive}}
+  </div>
+  <div class="alert alert-success" *ngIf="checkInfoInActive">
+    <strong>SUCCESS!!</strong> {{infoMessageInActive}}
+  </div>
+  <!-- <tr> -->
+  <!-- <div *ngIf="valueActiveUser" style="width:500px;height:400px;border:1px solid #000;"> -->
+  <!-- <p><b>User's Information</b><p> -->
+  <!-- <div class="row"> -->
+  <!-- <div class="col-lg-11"> -->
+  <!-- <table class="table"> -->
+  <!-- <thead> -->
+  <!-- <tr> -->
+  <!-- <th >User's Email</th> -->
+  <!-- <th >Action</th> -->
+  <!-- </tr> -->
+  <!-- </thead> -->
+  <!-- <tbody> -->
+  <!-- <tr *ngFor="let email of activeEmails"> -->
+  <!-- <td>{{email}}</td> -->
+  <!-- <td> -->
+  <!-- <button class="btn btn-danger" (click)="changeStatusNonActive(email)">DeActivate</button> -->
+  <!-- </td> -->
+  <!-- </tr> -->
+  <!-- </tbody> -->
+  <!-- </table> -->
+  <!-- </div> -->
+  <!-- </div> -->
+  <!-- </div> -->
+  <!-- <button type="button" class="btn btn-danger btn-lg" (click)=checkNonActiveUser()>Non-Active Users</button><br><br> -->
+  <!-- <div *ngIf="valueNonActiveUser" style="width:500px;height:200px;border:1px solid #000;"> -->
+  <!-- <p><b>User's Information</b><p> -->
+  <!-- <div class="row"> -->
+  <!-- <div class="col-lg-11"> -->
+  <!-- <table class="table"> -->
+  <!-- <thead> -->
+  <!-- <tr> -->
+  <!-- <th >User's Email</th> -->
+  <!-- <th >Action</th> -->
+  <!-- </tr> -->
+  <!-- </thead> -->
+  <!-- <tbody> -->
+  <!-- <tr *ngFor="let email of nonActiveEmails"> -->
+  <!-- <td>{{email}}</td> -->
+  <!-- <td> -->
+  <!-- <button class="btn btn-danger" (click)="changeStatusActive(email)">Activate</button> -->
+  <!-- </td> -->
+  <!--  -->
+  <!-- </tr> -->
+  <!-- </tbody> -->
+  <!-- </table> -->
+  <!-- </div> -->
+  <!-- </div> -->
+  <!-- </div> -->
+  <!-- </table> -->
+  <!-- </div> -->
+  <!-- <div class="alert alert-danger" *ngIf="checkError"> -->
+  <!-- <strong>ERROR!</strong> {{errorMessage}} -->
+  <!-- </div> -->
+  <!-- <div class="alert alert-success" *ngIf="checkInfo"> -->
+  <!-- <strong>SUCCESS!!</strong> {{infoMessage}} -->
+  <!-- </div> -->

@@ -1,0 +1,52 @@
+<div class="container form-group" text-align="center" align="center">
+  <h1 class="text-center">Login Here!</h1>
+  <form [formGroup]="adminLoginForm" (ngSubmit)="onAdminLoginFormSubmit()">
+    <table>
+      <tr>
+        <td><label>Email</label> </td>
+        <td>
+          <input type="text" formControlName="email" placeholder="Enter Username">
+          <div *ngIf="adminLoginForm.get('email').errors  && isSubmitted">
+            <div *ngIf="adminLoginForm.get('email').hasError('required')">
+              <span style="color:blue;">Email is required</span>
+            </div>
+            <div *ngIf="adminLoginForm.get('email').hasError('pattern')">
+              <span style="color: blue;">Enter valid Email.</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Password</label></td>
+        <td>
+          <input type="password" formControlName="password" placeholder="Enter password">
+          <div *ngIf="adminLoginForm.get('password').errors  && isSubmitted">
+            <div *ngIf="adminLoginForm.get('password').hasError('required')">
+              <span style="color:blue;">Password is required</span>
+            </div>
+            <div *ngIf="adminLoginForm.get('password').hasError('minlength')">
+              <span style="color: blue;">The password requied atleast 4 characters.</span>
+            </div>
+            <div *ngIf="adminLoginForm.get('password').hasError('maxlength')">
+              <span style="color: blue;">The password requied only 16 characters.</span>
+            </div>
+            <div *ngIf="adminLoginForm.get('password').hasError('pattern')">
+              <span style="color: blue;">Enter valid password.(e.g.John@123)</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <button type="submit" class="btn btn-danger btn-lg">LOGIN</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <div class="alert alert-danger" *ngIf="checkError">
+    <strong>ERROR!</strong> {{errorMessage}}
+  </div>
+  <div class="alert alert-success" *ngIf="checkInfo">
+    <strong>SUCCESS!</strong> {{infoMessage}}
+  </div>
+</div>

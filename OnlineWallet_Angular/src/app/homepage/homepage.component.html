@@ -1,0 +1,58 @@
+<div class="container form-group" text-align="center" align="center">
+  <h1 class="text-center">Login Here!</h1>
+  <form [formGroup]="myLoginForm" (ngSubmit)="onLoginFormSubmit()">
+    <table>
+      <tr>
+        <td><label>Email</label></td>
+        <td>
+          <input type="text" formControlName="email" placeholder="Enter Email">
+        </td>
+        <td>
+          <div *ngIf="myLoginForm.get('email').errors  && isSubmitted">
+            <div *ngIf="myLoginForm.get('email').hasError('required')">
+              <span style="color:blue;">Email is required</span>
+            </div>
+            <div *ngIf="myLoginForm.get('email').hasError('pattern')">
+              <span style="color: red;">Enter valid email.</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Password</label></td>
+        <td>
+          <input type="password" formControlName="password" placeholder="Enter password">
+        </td>
+        <td>
+          <div *ngIf="myLoginForm.get('password').errors  && isSubmitted">
+            <div *ngIf="myLoginForm.get('password').hasError('required')">
+              <span style="color:blue;">Password is required</span>
+            </div>
+            <div *ngIf="myLoginForm.get('password').hasError('minlength')">
+              <span style="color: red;">The password requied atleast 4 characters.</span>
+            </div>
+            <div *ngIf="myLoginForm.get('password').hasError('maxlength')">
+              <span style="color: red;">The password requied only 16 characters.</span>
+            </div>
+            <div *ngIf="myLoginForm.get('password').hasError('pattern')">
+              <span style="color: red;">Enter valid password.</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <button type="submit" value="login user" class="btn btn-danger btn-lg">LOGIN</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <p>If you are not registered?</p>
+  <a routerLink="/registeruser" class="btn btn-link">Register</a>
+
+  <div class="alert alert-danger" *ngIf="checkError">
+    <strong>ERROR!</strong> {{errorMessage}}
+  </div>
+  <div class="alert alert-success" *ngIf="checkInfo">
+    <strong>SUCCESS!!</strong> {{infoMessage}}
+  </div>

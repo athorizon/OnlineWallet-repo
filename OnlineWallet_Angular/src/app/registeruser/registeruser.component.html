@@ -1,0 +1,90 @@
+<div class="container form-group" text-align="center" align="center">
+  <h1 class="text-center">Registration Form</h1>
+  <p><b>Get Yourself Registered Now!</b></p>
+  <form [formGroup]="myRegistrationForm" (ngSubmit)="onRegistrationFormSubmit()">
+    <table>
+      <tr>
+        <td><label>Username</label> </td>
+        
+        <td>
+          <input type="text" formControlName="userName" placeholder="Enter Username"></td>
+          <td>
+          <div *ngIf="myRegistrationForm.get('userName').errors  && isSubmitted">
+            <div *ngIf="myRegistrationForm.get('userName').hasError('required')">
+              <span style="color:blue;">Username is required</span>
+            </div>
+            <div *ngIf="myRegistrationForm.get('userName').hasError('minLength')">
+              <span style="color:blue;">Username should contain atleast 4 characters.</span>
+            </div>
+            <div *ngIf="myRegistrationForm.get('userName').hasError('pattern')">
+              <span style="color: red;">Enter valid Username.</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Password</label> </td>
+        <td>
+          <input type="password" formControlName="password" placeholder="Enter Password"></td>
+        <td>
+          <div *ngIf="myRegistrationForm.get('password').errors  && isSubmitted">
+            <div *ngIf="myRegistrationForm.get('password').hasError('required')">
+              <span style="color:blue;">Password is required</span>
+            </div>
+            <div *ngIf="myRegistrationForm.get('password').hasError('minlength')">
+              <span style="color: red;">The password should contain atleast 4 characters.</span>
+            </div>
+            <div *ngIf="myRegistrationForm.get('password').hasError('maxlength')">
+              <span style="color: red;">The password required only 16 characters.</span>
+            </div>
+            <div *ngIf="myRegistrationForm.get('password').hasError('pattern')">
+              <span style="color: red;">Enter valid password.</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Phone Number</label> </td>
+        <td>
+          <input formControlName="phoneNumber" placeholder="Enter Phone number">
+          <div *ngIf="myRegistrationForm.get('phoneNumber').errors  && isSubmitted">
+            <div *ngIf="myRegistrationForm.get('phoneNumber').hasError('required')">
+              <span style="color:blue;">Phone Number is required</span>
+            </div>
+            <div *ngIf="myRegistrationForm.get('phoneNumber').hasError('maxLength')">
+              <span style="color: red;">The phonenumber should contain 10 digits only.</span>
+            </div>
+            <div *ngIf="myRegistrationForm.get('phoneNumber').hasError('pattern')">
+              <span style="color: red;">Enter valid phone number.</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Email</label></td>
+        <td>
+          <input formControlName="email" placeholder="Enter Email">
+          <div *ngIf="myRegistrationForm.get('email').errors  && isSubmitted">
+            <div *ngIf="myRegistrationForm.get('email').hasError('required')">
+              <span style="color:blue;">Email is required</span>
+            </div>
+            <div *ngIf="myRegistrationForm.get('email').hasError('pattern')">
+              <span style="color: red;">Enter valid email.</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <button type="submit" class="btn btn-danger btn-lg">REGISTER</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <div class="alert alert-danger" *ngIf="checkError">
+    <strong>ERROR!</strong> {{errorMessage}}
+  </div>
+  <div class="alert alert-success" *ngIf="checkInfo">
+    <strong>SUCCESS!</strong> {{infoMessage}}
+  </div>
+</div>
